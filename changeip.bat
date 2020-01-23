@@ -1,7 +1,7 @@
 @echo off
-
-
-goto start
+set /A ip=42
+mode con: cols=120 lines=25
+goto :start
 :: BatchGotAdmin
 
 :-------------------------------------
@@ -51,79 +51,117 @@ CD /D "%~dp0"
 :--------------------------------------
 @ECHO off
 :start
+ECHO.
+ECHO.
+ECHO                              ////////////////////////////////////////////////
+ECHO                                     S C H N E I D E R   E L E C T R I C
+ECHO                              \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ECHO.
+ECHO.
 echo Selezionare a quale dispositivo ci si vuole connettere, l'indirizzo ip verra' cambiato automaticamente.
+ECHO.
+
+::Inserire il nome qui (se avete fatto modifiche)
+ECHO Made by: Michael, Marco, Gabriele. 
+ECHO.
+ECHO L'indirizzo ip impostato e' x.x.x.%ip%
 ECHO.
 ECHO 1. Com'X 510 
 ECHO 2. PowerTag Link
 ECHO 3. IFE Gateway 
 ECHO 4. EGX300
-ECHO 5. Obtain an IP address automatically
-ECHO 6. Exit
+ECHO 5. IP manuale
+ECHO 6. DHCP (IP dinamico)
+ECHO 7. ip config
+ECHO 8. exit
+ECHO.
+ECHO.
 set choice=
-set /p choice=Type the number to print text.
+set /p choice=Digita il numero della voce selezionata: 
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='1' goto con1
-if '%choice%'=='2' goto con2
-if '%choice%'=='3' goto con3
-if '%choice%'=='4' goto con4
-if '%choice%'=='5' goto autosearch
-if '%choice%'=='6' goto bye
+if '%choice%'=='1' goto comx
+if '%choice%'=='2' goto powerlink
+if '%choice%'=='3' goto ifegw
+if '%choice%'=='4' goto egx300
+if '%choice%'=='5' goto setip
+if '%choice%'=='6' goto dynip
+if '%choice%'=='7' goto ipconf
+if '%choice%'=='8' goto bye
 ECHO "%choice%" Nope
 ECHO.
 goto start
 
-:con1
-ECHO Com'X 510 Computer ip: 10.25.1.242
-netsh interface ip set address "Ethernet" static 10.25.1.242 255.255.0.0
+:comx
+ECHO Com'X 510 Computer ip: 10.25.1.%ip%
+netsh interface ip set address "Ethernet" static 10.25.1.%ip% 255.255.0.0
 ECHO. 
-pause 
+timeout 2 
 goto start
 
-:con2
-ECHO PowerTag Link Computer ip: 169.254.249.242
-netsh interface ip set address "Ethernet" static 169.254.249.242 255.255.0.0 
+:powerlink
+ECHO PowerTag Link Computer ip: 169.254.249.%ip%
+netsh interface ip set address "Ethernet" static 169.254.249.%ip% 255.255.0.0 
 ECHO.
-pause 
+timeout 2 
 goto start
 
-:con3
-ECHO IFE Gateway Computer ip: 169.254.187.242 
-netsh interface ip set address "Ethernet" static 169.254.187.242 255.255.0.0 
+:ifegw
+ECHO IFE Gateway Computer ip: 169.254.187.%ip% 
+netsh interface ip set address "Ethernet" static 169.254.187.%ip% 255.255.0.0 
 ECHO.
-pause 
+timeout 2 
 goto start
 
 
-:con4
-ECHO EGX300 ip: 169.254.0.242 
-netsh interface ip set address "Ethernet" static 169.254.0.242 255.255.255.0 
+:egx300
+ECHO EGX300 ip: 169.254.0.%ip% 
+netsh interface ip set address "Ethernet" static 169.254.0.%ip% 255.255.255.0 
 ECHO.
-ECHO.
-pause 
+timeout 2 
 goto start
 
-:autosearch
+:setip
+ECHO L'indirizzo ip impostato e' x.x.x.%ip%
+ECHO.
+set /p ip2= Digita l'ip che si desidera utilizzare sull'ultimo ottetto. e.g. x.x.x.IP: 
+SET ip=%ip2%
+ECHO.
+ECHO Il nuovo indirizzo ip impostato e' x.x.x.%ip%
+timeout 2 
+goto start
+
+:dynip
 ECHO DHCP
-ECHO Resetting IP Address and Subnet Mask For DHCP
+ECHO.
+ECHO Reset dell'IP e la Subnet Mask con il DHCP
+ECHO.
 netsh int ip set address name = "Ethernet" source = dhcp
-ECHO Resetting DNS For DHCP
+ECHO.
+ECHO Reset DNS con il DHCP
+ECHO.
 netsh int ip set dns name = "Ethernet" source = dhcp
+timeout 2 
+goto start
+
+:ipconf
+ipconfig
+cls
+ipconfig
+cls
+ipconfig
 pause 
 goto start
 
 :bye
-set exit=
-ipconfig
-cls
-ipconfig
-ECHO.
-choice /c nyr /n /m "Exit? n/y/r(epeat ip config)
+ECHO Exit?
+ECHO n - No
+ECHO y - Si
+choice /c nyr /n
 If %ErrorLevel%==1 goto start
 If %ErrorLevel%==2 goto kill
-If %ErrorLevel%==3 goto bye
 
 :kill
 ECHO.
 ECHO Bye bye by dgz
-ECHO.
+timeout 3
 exit 0
