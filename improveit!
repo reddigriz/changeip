@@ -1,7 +1,0 @@
-↓     Lista di feature d'aggiungere, in ordine cronologico     ↓
-
-1) Subnet mask selezionabile da cli.
-2) Esecuzione automatica con privilegi automatici.
-3) Minimo Comun Denominatore indirizzo ip in base a MAC addr degli EGX300.
-4) Interfaccia di rete dinamica.
-5) MD5 hash for file intregrity
