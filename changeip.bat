@@ -2,7 +2,7 @@
 color 02
 set /A ip=42
 mode con: cols=120 lines=25
-goto :start
+
 :: BatchGotAdmin
 
 :-------------------------------------
@@ -17,7 +17,7 @@ REM --> If error flag set, we do not have admin.
 
 if '%errorlevel%' NEQ '0' (
 
-echo Requesting administrative privileges...
+echo Avvia come Amministratore!
 
 goto UACPrompt
 
@@ -51,7 +51,7 @@ CD /D "%~dp0"
 
 :--------------------------------------
 @ECHO off
-:start
+
 ECHO.
 ECHO.
 ECHO                              ////////////////////////////////////////////////
