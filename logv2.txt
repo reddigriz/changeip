@@ -1,9 +1,0 @@
------------------------
-     changeip.bat
------------------------
-
-- L'ultimo ottetto del ipv4 è in una variabile ora, quindi si può 
-  modificare.
-- Ipconfig ha la sua voce nel menù.
-- Graphic stuff and fixes.
-- Aggiunto nuovo nome.
