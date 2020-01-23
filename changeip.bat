@@ -63,7 +63,7 @@ echo Selezionare a quale dispositivo ci si vuole connettere, l'indirizzo ip verr
 ECHO.
 
 ::Inserire il nome qui (se avete fatto modifiche)
-ECHO Made by: Michael, Marco, Gabriele. 
+ECHO Made by: Michael, Marco, Gabriele, Fabrizio. 
 ECHO.
 ECHO L'indirizzo ip impostato e' x.x.x.%ip%
 ECHO.
