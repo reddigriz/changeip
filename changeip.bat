@@ -55,7 +55,7 @@ CD /D "%~dp0"
 ECHO.
 ECHO.
 ECHO                              ////////////////////////////////////////////////
-ECHO                                     S C H N E I D E R   E L E C T R I C
+ECHO                                              ESPS SE ~ changeip
 ECHO                              \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ECHO.
 ECHO.
