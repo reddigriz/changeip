@@ -1,4 +1,5 @@
 @echo off
+color 02
 set /A ip=42
 mode con: cols=120 lines=25
 goto :start
